@@ -1,0 +1,85 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html;charset=gb2312" />
+<title>今天外卖该点啥</title>
+<style type="text/css">
+	*{ margin: 5px;padding: 0}
+	#ul1{width: 200px; height: 200px; background: #ccc;}
+	/*li{list-style:none}*/
+	li{ padding:0;list-style:none;margin-top: 2px 5px;}
+	#btn-choose{
+		position: absolute;
+		margin-left:250px; 
+		margin-top:-150px;
+	}
+	a{color: red;}
+</style>
+<script src="js/choose.js"></script>
+<script type="text/javascript">
+	window.onload=function(){
+		var oTxt=document.getElementById('txt1');
+		var oBtn1=document.getElementById('btn1');
+		var oBtn2=document.getElementById('btn-choose');
+		var oUl=document.getElementById('ul1');
+		oBtn1.onclick=function(){
+			var oLi= document.createElement("li");
+			oUl.appendChild(oLi);
+			oLi.innerHTML=oTxt.value;
+			// 加入删除功能
+			/*var oA= document.createElement("a");
+			oLi.appendChild(oA);
+			oA.innerHTML="×";*/
+			//获取li的长度
+			var Lis=document.getElementsByTagName('li').length-1;
+			var Li_id="li"+Lis;
+			//设置新的li的id；
+			oLi.setAttribute("id",Li_id);
+			oTxt.value="";
+		}
+		oBtn2.onclick=function(){
+			var aLi=document.getElementsByTagName("li");
+			var Lis=aLi.length;
+			var oDiv=document.getElementById("choose");
+			var i=Math.random()*Lis;
+			var I=parseInt(i);
+				//被选中的li
+			oDiv.innerHTML=aLi[I].innerHTML;
+			console.log(i);
+			console.log(I);
+			console.log(aLi[I].innerHTML);
+		}
+  		/*var aA=document.getElementsByTagName('a');
+  		for(var j=0;j<aA.length;j++){
+  			aA[j].onclick=function(){
+
+  			}
+  		}*/
+	};
+
+/*	function addli(n){				
+    var ul = document.getElementById("myul");
+    for(var i=0;i<n;i++){
+        var li= document.createElement("li");
+        var t=document.createTextNode(text);
+        li.appendChild(t);
+        ul.appendChild(li);
+    }
+}*/
+</script>
+</head>
+<body>
+<input id="txt1" type="text" />
+<input id="btn1" type="button" value="加入外卖店铺">
+<ul id="ul1">
+	<li id="li0">老干妈<a>×</a></li>
+	<li id="li1">沙县小吃<a>×</a></li>
+	<li id="li2">过桥米线<a>×</a></li>
+	<li id="li3">黄焖鸡米饭<a>×</a></li>
+</ul>
+<input id="btn-choose" type="button" value="开始翻牌">
+<div id="choose"></div>
+</body>
+</html>
