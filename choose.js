@@ -21,7 +21,7 @@ window.onload=function(){
 	oBtn2.onclick=function(){
 		var aLi=document.getElementsByTagName("li");
 		var Lis=aLi.length;
-		var oDiv=document.getElementById("choose");
+		var oDiv=document.getElementById("show");
 		var i=Math.random()*Lis;
 		var I=parseInt(i);
 			//被选中的li
