@@ -4,19 +4,23 @@ window.onload=function(){
 	var oBtn2=document.getElementById('btn-choose');
 	var oUl=document.getElementById('ul1');
 	oBtn1.onclick=function(){
-		var oLi= document.createElement("li");
-		oUl.appendChild(oLi);
-		oLi.innerHTML=oTxt.value;
-		// 加入删除功能
-		/*var oA= document.createElement("a");
-		oLi.appendChild(oA);
-		oA.innerHTML="×";*/
-		//获取li的长度
-		var Lis=document.getElementsByTagName('li').length-1;
-		var Li_id="li"+Lis;
-		//设置新的li的id；
-		oLi.setAttribute("id",Li_id);
-		oTxt.value="";
+		if(oTxt.value ==""){
+			alert("输入框不能为空！")
+		}else{
+			var oLi= document.createElement("li");
+			oUl.appendChild(oLi);
+			oLi.innerHTML=oTxt.value;
+			// 加入删除功能
+			/*var oA= document.createElement("a");
+			oLi.appendChild(oA);
+			oA.innerHTML="×";*/
+			//获取li的长度
+			var Lis=document.getElementsByTagName('li').length-1;
+			var Li_id="li"+Lis;
+			//设置新的li的id；
+			oLi.setAttribute("id",Li_id);
+			//oTxt.value="";
+		}
 	}
 	oBtn2.onclick=function(){
 		var aLi=document.getElementsByTagName("li");
