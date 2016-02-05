@@ -10,16 +10,12 @@ window.onload=function(){
 			var oLi= document.createElement("li");
 			oUl.appendChild(oLi);
 			oLi.innerHTML=oTxt.value;
-			// 加入删除功能
-			/*var oA= document.createElement("a");
-			oLi.appendChild(oA);
-			oA.innerHTML="×";*/
+			oLi.innerHTML=oLi.innerHTML.trim();
 			//获取li的长度
 			var Lis=document.getElementsByTagName('li').length-1;
 			var Li_id="li"+Lis;
 			//设置新的li的id；
 			oLi.setAttribute("id",Li_id);
-			//oTxt.value="";
 		}
 	}
 	oBtn2.onclick=function(){
@@ -30,14 +26,5 @@ window.onload=function(){
 		var I=parseInt(i);
 			//被选中的li
 		oDiv.innerHTML=aLi[I].innerHTML;
-		console.log(i);
-		console.log(I);
-		console.log(aLi[I].innerHTML);
 	}
-  		/*var aA=document.getElementsByTagName('a');
-  		for(var j=0;j<aA.length;j++){
-  			aA[j].onclick=function(){
-
-  			}
-  		}*/
 };
