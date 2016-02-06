@@ -10,13 +10,16 @@ window.onload=function(){
 			var oLi= document.createElement("li");
 			oUl.appendChild(oLi);
 			oLi.innerHTML=oTxt.value;
-			oLi.innerHTML=oLi.innerHTML.trim();
+			console.log(oLi.innerHTML);
+			oLi.innerHTML=oLi.innerHTML.replace(/\s/ig,'');
+			//oLi.innerHTML=oLi.innerHTML.trim();
 			//获取li的长度
 			var Lis=document.getElementsByTagName('li').length-1;
 			var Li_id="li"+Lis;
 			//设置新的li的id；
 			oLi.setAttribute("id",Li_id);
 		}
+		oTxt.value=null;
 	}
 	oBtn2.onclick=function(){
 		var aLi=document.getElementsByTagName("li");
