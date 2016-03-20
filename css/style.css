@@ -2247,3 +2247,6 @@ pre .css ~ * .id {
 .article-entry{
   padding-bottom: 5px;
 }
+#projectexperience li{
+  list-style-type:none;
+}
