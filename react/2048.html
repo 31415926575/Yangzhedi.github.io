@@ -230,7 +230,7 @@
             window.addEventListener("keydown", this.keyHandler, false);
         },
         render:function(){
-            var status = !can_move(this.state)?" - Game Over!":"";
+            var status = !can_move(this.state)?" - 游戏结束 !":"";
             return <div className="app">
                 <span className="score">
                     Score: {score_board(this.state)}{status}
