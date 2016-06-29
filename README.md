@@ -1,6 +1,8 @@
 # Yangzhedi.github.io
 杨哲迪的个人主页。
 
-随机获取外卖店铺的小案例（可增加，暂时不可删除）：http://yangzhedi.github.io/takeout.html
+个人在线简历: http://yangzhedi.github.io/index.html
 
-个人在线简历：http://yangzhedi.github.io/index.html 
+React的一些小例子:
+
+    1.控制复选框可选个数: Yangzhedi.github.io/react/limitCheckBox.html
