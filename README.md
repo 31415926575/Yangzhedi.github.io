@@ -5,4 +5,4 @@
 
 React的一些小例子:
 
-    1.控制复选框可选个数: Yangzhedi.github.io/react/limitCheckBox.html
+    1.控制复选框可选个数: http://yangzhedi.github.io/react/limitCheckBox.html
