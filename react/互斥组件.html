@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title> 三组件互斥_blog </title>
+</head>
+<body>
+<div id="app"></div>
+<script src="../react-0.13.2/build/react.js"></script>
+<script src="../react-0.13.2/build/JSXTransformer.js"></script>
+<script src="../react-0.13.2/build/jquery.min.js"></script>
+<script type="text/jsx">
+    var Component = React.createClass({
+        getInitialState:function () {
+            return{
+                mutexBoolean1:false,
+                mutexBoolean2:true,
+                mutexBoolean3:false
+            };
+        },
+        handleCheck1:function (){
+            this.setState({
+                mutexBoolean1:true,
+                mutexBoolean2:false,
+                mutexBoolean3:false
+            });
+        },
+        handleCheck2:function (){
+            this.setState({
+                mutexBoolean1:false,
+                mutexBoolean2:true,
+                mutexBoolean3:false
+            });
+            console.log('2被点击了');
+        },
+        handleCheck3:function (){
+            this.setState({
+                mutexBoolean1:false,
+                mutexBoolean2:false,
+                mutexBoolean3:true
+            });
+        },
+        render:function (){
+            return(
+                    <div>
+                        <Component1 mutexBoolean1={this.state.mutexBoolean1} handleCheck1={this.handleCheck1}/>
+                        <br />
+                        <Component2 mutexBoolean2={this.state.mutexBoolean2} handleCheck2={this.handleCheck2}/>
+                        <br />
+                        <Component3 mutexBoolean3={this.state.mutexBoolean3} handleCheck3={this.handleCheck3}/>
+                    </div>
+            )
+        }
+    });
+
+    var Component1 = React.createClass({
+        checkedOrUn:function (mutexBoolean1) {
+            if(mutexBoolean1){
+
+            }else{
+                $("input[name='Component1']").attr('checked',false);
+            }
+        },
+        componentWillReceiveProps:function (nextProps) {
+            console.log("componentWillReceiveProps");
+            console.log(nextProps.mutexBoolean1);
+            this.checkedOrUn(nextProps.mutexBoolean1);
+        },
+        componentDidMount:function () {
+            console.log("componentDidMount");
+            this.checkedOrUn(this.props.mutexBoolean1);
+        },
+        render:function(){
+            //console.log("render");
+            return(
+                    <div>
+                        <p> Component1 </p>
+                        <input name="Component1" type="radio" value="Chinese" onChange={this.props.handleCheck1} />Component11
+                        <input name="Component1" type="radio" value="Math" onChange={this.props.handleCheck1} />Component12
+                        <input name="Component1" type="radio" value="English" onChange={this.props.handleCheck1}/>Component13
+                    </div>
+            );
+
+        }
+    });
+
+    var Component2 = React.createClass({
+        checkedOrUn:function (mutexBoolean2) {
+            if(mutexBoolean2){
+
+            }else{
+                $("input[name='Component2']").attr('checked',false);
+            }
+        },
+        componentWillReceiveProps:function (nextProps) {
+            this.checkedOrUn(nextProps.mutexBoolean2);
+        },
+        componentDidMount:function () {
+            this.checkedOrUn(this.props.mutexBoolean2);
+        },
+        render:function(){
+            return(
+                    <div>
+                        <p> Component2 </p>
+                        <input name="Component2" type="radio"  value="All" onChange={this.props.handleCheck2} />Component2<br />
+                        <input name="Component2" type="radio" value="MyCEESubject" onChange={this.props.handleCheck2} />Component2<br />
+                        <input name="Component2" type="radio" value="MyChooseSubject" onChange={this.props.handleCheck2} />Component2<br />
+                    </div>
+            )
+        }
+    });
+
+    var Component3 = React.createClass({
+        checkedOrUn:function (mutexBoolean3) {
+            if(mutexBoolean3){
+
+            }else{
+                $("input[name='Component3']").attr('checked',false);
+            }
+        },
+        componentWillReceiveProps:function (nextProps) {
+            this.checkedOrUn(nextProps.mutexBoolean3);
+        },
+        componentDidMount:function () {
+            this.checkedOrUn(this.props.mutexBoolean3);
+        },
+        render:function(){
+            return(
+                    <div>
+                        <p> Component3 </p>
+                        <input name="Component3" type="checkbox"  value="A222ll" onChange={this.props.handleCheck3} />Component3<br />
+                        <input name="Component3" type="checkbox" value="My222CEESubject" onChange={this.props.handleCheck3} />Component3<br />
+                        <input name="Component3" type="checkbox" value="MyC2222hooseSubject" onChange={this.props.handleCheck3} />Component3<br />
+                    </div>
+            )
+        }
+    });
+
+    React.render(
+            <Component />,
+            document.getElementById('app')
+    )
+</script>
+</body>
+</html>
