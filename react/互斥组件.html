@@ -111,12 +111,13 @@
             this.checkedOrUn(this.props.mutexBoolean2);
         },
         render:function(){
+            var type2 = "radio";
             return(
                     <div>
                         <p> Component2 </p>
-                        <input name="Component2" type="radio"  value="All" onChange={this.props.handleCheck2} />Component2<br />
-                        <input name="Component2" type="radio" value="MyCEESubject" onChange={this.props.handleCheck2} />Component2<br />
-                        <input name="Component2" type="radio" value="MyChooseSubject" onChange={this.props.handleCheck2} />Component2<br />
+                        <InputAndLabel name="Component2" type={type2} id="Component21" value="Component21" handleClick={this.props.handleCheck2} /><br/>
+                        <InputAndLabel name="Component2" type={type2} id="Component22" value="Component22" handleClick={this.props.handleCheck2} /><br/>
+                        <InputAndLabel name="Component2" type={type2} id="Component23" value="Component23" handleClick={this.props.handleCheck2} />
                     </div>
             )
         }
@@ -137,12 +138,14 @@
             this.checkedOrUn(this.props.mutexBoolean3);
         },
         render:function(){
+            var type3 = "checkbox";
             return(
                     <div>
                         <p> Component3 </p>
-                        <input name="Component3" type="checkbox"  value="A222ll" onChange={this.props.handleCheck3} />Component3<br />
-                        <input name="Component3" type="checkbox" value="My222CEESubject" onChange={this.props.handleCheck3} />Component3<br />
-                        <input name="Component3" type="checkbox" value="MyC2222hooseSubject" onChange={this.props.handleCheck3} />Component3<br />
+                        <InputAndLabel name="Component3" type={type3} id="Component31" value="Component31" handleClick={this.props.handleCheck3} /><br/>
+                        <InputAndLabel name="Component3" type={type3} id="Component32" value="Component32" handleClick={this.props.handleCheck3} /><br/>
+                        <InputAndLabel name="Component3" type={type3} id="Component33" value="Component33" handleClick={this.props.handleCheck3} />
+                        
                     </div>
             )
         }
