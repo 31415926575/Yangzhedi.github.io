@@ -10,6 +10,17 @@
 <script src="../react-0.13.2/build/JSXTransformer.js"></script>
 <script src="../react-0.13.2/build/jquery.min.js"></script>
 <script type="text/jsx">
+    var InputAndLabel = React.createClass({
+        render:function(){
+            return(
+                    <input name={this.props.name} type={this.props.type}
+                           id={this.props.id} onChange={this.props.handleClick} >
+                        <label htmlFor={this.props.id}>{this.props.value}</label>
+                    </input>
+            )
+        }
+    });
+
     var Component = React.createClass({
         getInitialState:function () {
             return{
@@ -72,12 +83,13 @@
         },
         render:function(){
             //console.log("render");
+            var type1 = "radio";
             return(
                     <div>
                         <p> Component1 </p>
-                        <input name="Component1" type="radio" value="Chinese" onChange={this.props.handleCheck1} />Component11
-                        <input name="Component1" type="radio" value="Math" onChange={this.props.handleCheck1} />Component12
-                        <input name="Component1" type="radio" value="English" onChange={this.props.handleCheck1}/>Component13
+                        <InputAndLabel name="Component1" type={type1} id="Component11" value="Component11" handleClick={this.props.handleCheck1} />
+                        <InputAndLabel name="Component1" type={type1} id="Component12" value="Component12" handleClick={this.props.handleCheck1} />
+                        <InputAndLabel name="Component1" type={type1} id="Component13" value="Component13" handleClick={this.props.handleCheck1}/>
                     </div>
             );
 
