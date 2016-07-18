@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title> 可切换ul </title>
+    <style>
+        .active{
+            color: #eeb91a;
+            list-style-type:none;
+        }
+        .li{
+            list-style-type:none;
+        }
+        .SubjectNameList{
+            position: relative;
+            margin-right: 120px;
+            float: right;
+        }
+        .SubjectBox{
+            position: relative;
+        }
+        .SubjectContent{
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script src="react-0.13.2/build/react.js"></script>
+<script src="react-0.13.2/build/JSXTransformer.js"></script>
+<script src="react-0.13.2/build/jquery.min.js"></script>
+<script type="text/jsx">
+    const subjectLibMockData = {
+        status: "success",
+        subjects: [
+            {
+                subjectName: "111",
+                subjectContent: [
+                    {
+                        contentTitle: "要求",
+                        content: "要求111"
+                    },
+                    {
+                        contentTitle: "建议",
+                        content: "建议111"
+                    }
+                ]
+            },
+            {
+                subjectName: "222",
+                subjectContent: [
+                    {
+                        contentTitle: "要求",
+                        content: "要求222"
+                    },
+                    {
+                        contentTitle: "建议",
+                        content: "建议222"
+                    }
+                ]
+            },
+            {
+                subjectName: "333",
+                subjectContent: [
+                    {
+                        contentTitle: "要求",
+                        content: "要求333"
+                    },
+                    {
+                        contentTitle: "建议",
+                        content: "建议333"
+                    }
+                ]
+            }
+        ]
+    };
+    //模拟数据结束
+    //父组件SubjectBox
+    var SubjectBox = React.createClass({
+        getInitialState(){
+            return{
+                subName:"222"
+            };
+        },
+        handleClick:function(subName){
+            this.setState({
+                subName:subName
+            });
+            console.log(subName);
+        },
+        render:function(){
+            var divStyle = "SubjectBox";
+            return(
+                    <div className={divStyle}>
+                        <SubjectNameList subName={this.state.subName} handleClick={this.handleClick}/>
+                        <SubjectContent subName={this.state.subName}/>
+                    </div>
+            )
+        }
+    });
+    //右侧学科列表
+    var SubjectNameList = React.createClass({
+        render:function(){
+            var subjectNameList = [];
+            var this_=this;
+            var divStyle = "SubjectNameList";
+            var snArr = subjectLibMockData.subjects;
+            for(var i = 0;i < snArr.length;i++){
+                subjectNameList.push(snArr[i].subjectName);
+            }
+            //console.log(snList);
+            return(
+                    <div>
+                        <h2>可切换UL</h2>
+                        {
+                            subjectNameList.map(function(item){
+                                var isActive = false;
+                                if(item == this_.props.subName){
+                                    isActive = true;
+                                }
+                                return (<SubjectLi isActive={isActive} subName={item} hanldeClick={this_.props.handleClick} />)
+                            })
+                        }
+                    </div>
+            )
+        }
+    });
+    var SubjectLi = React.createClass({
+        handleClick(){
+            this.props.hanldeClick(this.props.subName);
+        },
+        render:function(){
+            var liStyle = "li";
+            if (this.props.isActive){
+                liStyle = "active";
+            }
+            return(
+                    <li className={liStyle} onClick={this.handleClick}>{this.props.subName}</li>
+            )
+        }
+    });
+    //左侧学科介绍
+    var SubjectContent = React.createClass({
+        render:function(){
+            var divStyle = "SubjectContent";
+            var snArr = subjectLibMockData.subjects;
+            var content = [];
+            var snArrContent = subjectLibMockData.subjects[0].subjectContent;
+            for(var i = 0;i<snArr.length;i++){
+                if(snArr[i].subjectName == this.props.subName){
+                    for(var j = 0;j<snArrContent.length;j++){
+                        content.push(subjectLibMockData.subjects[i].subjectContent[j]);
+                    }
+                }
+            }
+            console.log(content);
+            return(
+                    <div>
+                        {
+                            content.map(function(item){
+                                return(
+                                        <div>
+                                            <p>{item.contentTitle}</p>
+                                            <p>{item.content}</p>
+                                            <br/>
+                                        </div>
+                                )
+                            })
+                        }
+                    </div>
+            )
+        }
+    });
+    React.render(
+            <SubjectBox />,
+            document.getElementById('app')
+    )
+</script>
+</body>
+</html>
