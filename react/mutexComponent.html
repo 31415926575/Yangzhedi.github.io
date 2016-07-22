@@ -23,7 +23,7 @@
     var InputAndLabel = React.createClass({
         render:function(){
             return(
-                    <input name={this.props.name} type={this.props.type}
+                    <input name={this.props.name} type={this.props.type} defaultValue={this.props.defaultValue}
                            id={this.props.id} onChange={this.props.handleClick} >
                         <label htmlFor={this.props.id}>{this.props.value}</label>
                     </input>
@@ -34,8 +34,8 @@
     var Component = React.createClass({
         getInitialState:function () {
             return{
-                mutexBoolean1:false,
-                mutexBoolean2:true,
+                mutexBoolean1:true,
+                mutexBoolean2:false,
                 mutexBoolean3:false
             };
         },
@@ -79,7 +79,8 @@
             if(mutexBoolean1){
 
             }else{
-                $("input[name='Component1']").attr('checked',false);
+                //$("input[name='Component1']").attr('checked',false);
+                $("input[name='Component1']").val('');
             }
         },
         componentWillReceiveProps:function (nextProps) {
@@ -93,13 +94,12 @@
         },
         render:function(){
             //console.log("render");
-            var type1 = "radio";
+            var type1 = "text";
             return(
                     <div className="border">
                         <span> Component1 </span><br/>
-                        <InputAndLabel name="Component1" type={type1} id="Component11" value="Component11" handleClick={this.props.handleCheck1} />
-                        <InputAndLabel name="Component1" type={type1} id="Component12" value="Component12" handleClick={this.props.handleCheck1} />
-                        <InputAndLabel name="Component1" type={type1} id="Component13" value="Component13" handleClick={this.props.handleCheck1}/>
+                        <InputAndLabel name="Component1" type={type1} id="Component11"
+                                       defaultValue="Component11" handleClick={this.props.handleCheck1} />
                     </div>
             );
 
