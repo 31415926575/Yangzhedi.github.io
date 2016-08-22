@@ -29,8 +29,8 @@
                 .addPage('face')
                     .addComponent('logo',{
                         text:'logo',
-                        width:400,
-                        height:100,
+                        width:600,
+                        height:300,
                         css:{backgroundColor:'red',top:0,opacity:0},
                         center:true,
                         animateIn:{ top:100,opacity:1 },
@@ -38,21 +38,32 @@
                     })
                     .addComponent('slogan',{
                         text:'slogan',
-                        width:400,
-                        height:100,
-                        css:{backgroundColor:'green',top:400},
-                        center:true
+                        width:600,
+                        height:300,
+                        css:{backgroundColor:'green',bottom:400},
+                        center:true,
+                        animateIn:{ opacity:1 },
+                        animateOut:{ opacity:0 }
                     })
                 .addPage('desc')
                     .addComponent('caption',{
                         text:'核心理念',
-                        width:400,
-                        height:100,
-                        css:{backgroundColor:'blue',top:400},
-                        center:true
+                        width:600,
+                        height:300,
+                        css:{backgroundColor:'blue',bottom:0,opacity:0},
+                        center:true,
+                        animateIn:{ bottom:600,opacity:1 },
+                        animateOut:{ bottom:0,opacity:0 }
                     })
                 .addPage('page-3')
-                    .addComponent('caption',{text:'课程方向分布'})
+                    .addComponent('caption',{
+                        text:'课程方向分布',
+                        width:600,
+                        height:200,
+                        css:{backgroundColor:'white',top:0,opacity:0},
+                        center:true,
+                        animateIn:{ opacity:1 },
+                        animateOut:{ opacity:0 }})
                 .loader();
         })
     </script>
