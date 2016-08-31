@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title> 一个评论按钮 </title>
+    <style>
+        .border{
+            width: 300px;
+            border: 1px solid darkred;
+            margin-bottom: 15px;
+            padding: 5px;
+        }
+        .type{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="app"></div>
+<script src="../react-0.13.2/build/react.js"></script>
+<script src="../react-0.13.2/build/JSXTransformer.js"></script>
+<script src="../react-0.13.2/build/jquery.min.js"></script>
+<script type="text/jsx">
+    const termSelfSummary = {
+        summary:[
+            {
+                type:"学期总评", score:100,mixLength:150,
+                value:"",
+                flag:false
+            },{
+                type:"品德操守",score:50,mixLength:50,
+                value:"品德贼差",
+                flag:true
+            },{
+                type:"责任义务",score:50,mixLength:50,
+                value:"没啥责任义务",
+                flag:true
+            },{
+                type:"行为习惯",score:50,mixLength:50,
+                value:"",
+                flag:false
+            }
+        ]
+    };
+    //map循环
+    var ZheJiuShiZhongJie = React.createClass({
+        render(){
+            //处理原始数据
+            var summaryArr= [];
+            var summaryLength = termSelfSummary.summary.length;
+            for(var i =0;i < summaryLength;i++){
+                summaryArr.push(termSelfSummary.summary[i]);
+            }
+            return(
+                    <div>
+                        {
+                            summaryArr.map(function (item, index) {
+                                return(
+                                        <TextareaWithButton flag={item.flag} value={item.value}
+                                                            type={item.type} score={item.score}
+                                                            index={index}/>
+                                )
+                            })
+                        }
+                    </div>
+            )
+        }
+    });
+
+    var TextareaWithButton = React.createClass({
+        getInitialState(){
+            return{
+                show: true
+            };
+        },
+        componentWillMount(){
+            if(this.props.flag){
+                this.setState({
+                    show: false
+                });
+            }
+        },
+        render:function(){
+            //console.log(this.props.value);
+            var divBorder = "border";
+            var indexMixLength = termSelfSummary.summary[this.props.index].mixLength;
+            if(this.state.show){
+                return(
+                        //没评论的
+                        <div className={divBorder}>
+                            <span>{this.props.type}</span>
+                            <span>（不少于{indexMixLength}个字）</span>
+                            <span> 积分:{this.props.score}分</span>
+                            <Textarea flag={this.props.flag} index={this.props.index} value={this.props.value}/>
+                        </div>
+                )
+            }else{
+                return(
+                        //有评论的，
+                        <div className={divBorder}>
+                            <span>{this.props.type}</span>
+                            <span>（不少于{indexMixLength}个字）</span>
+                            <span> 积分:{this.props.score}分</span>
+                            <Textarea flag={this.props.flag} value={this.props.value}/>
+                        </div>
+                )
+            }
+
+        }
+    });
+    //textarea的div+span+textarea
+    var Textarea =React.createClass({
+        handleClick(e){
+            e.preventDefault();
+            var textareaValue = this.refs.goodTextarea.getDOMNode().value;
+            console.log(this.props.index+"号评论框  提交了的评论是  "+textareaValue);
+            var indexMixLength = termSelfSummary.summary[this.props.index].mixLength;
+            if(textareaValue.length < indexMixLength){
+                console.log("请最少输入  "+indexMixLength+"  个字符");
+            }
+        },
+        render:function(){
+            var defaultValue = "请编辑评论。。。";
+            //console.log(this.props.index);
+            //var submitref =this.refs.goodTextarea.getDOMNode().value;
+            //console.log(submitref);
+            if(this.props.flag){
+                //console.log(this.props.value);
+                return(
+                        <div>
+                            <textarea readOnly="readonly">{this.props.value}</textarea>
+                        </div>
+                )
+            }else{
+                return(
+                        <div>
+                            <textarea id={this.props.index} defaultValue={defaultValue}
+                                      ref="goodTextarea" maxlength="200"></textarea>
+                            <button onClick={this.handleClick}>提交</button>
+                            <ButtonCancel index={this.props.index}/>
+                        </div>
+                )
+            }
+
+        }
+    });
+
+    var ButtonCancel = React.createClass({
+        clickCancel(){
+            switch (this.props.index){
+                case 0 : $("#0").val(''); break;
+                case 1 : $("#1").val(''); break;
+                case 2 : $("#2").val(''); break;
+                case 3 : $("#3").val(''); break;
+            }
+            //console.log(cancelId+"取消了");
+            /*var cancelId="textarea"+this.props.index;
+             console.log(cancelId+"取消了");
+             //console.log($("#cancelId").val);
+             $("#textarea0").val('');*/
+            //document.getElementById("cancelId").innerHTML="";
+        },
+        render:function(){
+            return(
+                    <button onClick={this.clickCancel}>清空</button>
+            )
+        }
+    });
+
+    React.render(
+            <ZheJiuShiZhongJie />,
+            document.getElementById('app')
+    )
+</script>
+</body>
+</html>

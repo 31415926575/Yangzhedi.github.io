@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> checkBox 限制点击 </title>
+</head>
+<style>
+    .limitCheckBox{
+        width: 500px;
+        height: 200px;
+        border: 1px solid #00aaee;
+        border-radius: 4px;
+    }
+</style>
+<body>
+<div id="app"></div>
+<script src="../react-0.13.2/build/react.js"></script>
+<script src="../react-0.13.2/build/JSXTransformer.js"></script>
+<script src="../react-0.13.2/build/jquery.min.js"></script>
+<script type="text/jsx">
+    //分离input和label标签
+    var InputAndLabel = React.createClass({
+        render:function(){
+            return(
+                    <input name={this.props.name} type={this.props.type}
+                           id={this.props.id} onChange={this.props.handleClick} >
+                        <label htmlFor={this.props.id}>{this.props.id}</label>
+                    </input>
+            )
+        }
+    });
+
+    var LimitCheckBox = React.createClass({
+        getInitialState(){
+            return{
+                limitNum : 3,
+                checkNum : 0
+            };
+        },
+        //setState 限制个数
+        limitNumCLick(e){
+            //console.log(e.target.id);
+            //e.target.id 为当前选中的单选按钮的数字
+            this.setState({
+                limitNum : e.target.id
+            })
+        },
+        checkNumCLick(e){
+            if($("input[name='labels']:checked").length > this.state.limitNum){
+                e.currentTarget.checked = false;
+            }
+            //console.log($("input[name='labels']:checked").length);
+        },
+        render:function(){
+            var labels = ["check1","check2","check3","check4","check5","check6","check7"];
+            var labelsNum =[1,2,3,4,5];
+            //map中的this会变，所以要替换一下
+            var checkNumCLick = this.checkNumCLick;
+            var limitNumCLick = this.limitNumCLick;
+            var type2 = "checkbox";
+            var type1 = "radio";
+            return(
+                    <div className="limitCheckBox">
+                        <p> 选择限制个数(默认为3) </p>
+                        {
+                            labelsNum.map(function(item, index){
+                                return <InputAndLabel id={item} type={type1}
+                                                      name="labelsNum" handleClick={limitNumCLick}/>
+                            })
+                        }
+                        <br/><br/>
+                        <div>
+                            <p> 受限checkBox </p>
+                            {
+                                labels.map(function (item, index) {
+                                    return <InputAndLabel id={item} type={type2}
+                                                          name="labels" handleClick={checkNumCLick}/>
+                                })
+                            }
+                        </div>
+                    </div>
+            )
+        }
+    });
+
+    React.render(<LimitCheckBox />, document.getElementById('app'))
+</script>
+</body>
+</html>
