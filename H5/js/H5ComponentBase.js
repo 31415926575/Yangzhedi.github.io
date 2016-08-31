@@ -24,17 +24,38 @@ var H5ComponentBase = function( name, cfg ){
         })
     }
     //  ...很多自定义的参数
+    if( typeof cfg.onclick === 'function' ){
+        component.on('click',cfg.onclick);
+    }
 
+
+    /*var cfg1 = {
+        type : 'url',
+        text : '文本内容',
+        /!*css:{
+            left:20,
+            bottom:30,
+        },*!/
+        decoration:false
+    };*/
+    if(cfg.url){
+        var h5 = new H5ComponentUrl('myUrl',cfg.url);
+    }
+
+
+    component.append(h5);
     component.on('onLoad',function(){
-        component.addClass(cls+'_load').removeClass(cls+'_leave');
-        //动画
-        cfg.animateIn && component.animate( cfg.animateIn );
+        setTimeout(function(){
+            component.addClass(cls+'_load').removeClass(cls+'_leave');
+            cfg.animateIn && component.animate( cfg.animateIn );
+        },cfg.delay || 0);
         return false;
     });
     component.on('onLeave',function(){
-        component.addClass(cls+'_leave').removeClass(cls+'_load');
-        //动画
-        cfg.animateOut && component.animate( cfg.animateOut );
+        setTimeout(function(){
+            component.addClass(cls+'_leave').removeClass(cls+'_load');
+            cfg.animateOut && component.animate( cfg.animateOut );
+        },cfg.delay || 0);
         return false;
     });
 
