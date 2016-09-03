@@ -18,7 +18,7 @@ var H5ComponentPolyline = function( name, cfg ) {
     var step = 10;
     ctx.beginPath();
     ctx.lineWidth = 1;
-    ctx.strokeStyle = '#aaa';
+    ctx.strokeStyle = '#000';
 
     window.ctx = ctx;
     for (var i = 0; i < step + 1; i++) {

@@ -125,7 +125,23 @@ $(function(){
             delay:500
         })
         .addPage()
-            .addComponent('caption',{text:'这是个标题'})
+            .addComponent('caption',{text:'这只是个标题'})
+            .addComponent('polyline',{
+                type:'polyline',
+                data:[['前端开发',.4,'#ff7676'],['移动开发',.2],['后端开发',.3,'blue'],['图像处理',.1]],
+                width:530,
+                height:300,
+                center:true,
+                css:{opacity:0,top:200},
+                animateIn:{opacity:1,top:250},
+                animateOut:{opacity:0,top:100},
+            })
+        .addPage()
+            .addComponent('caption',{text:'这还是个标题'})
+        .addPage()
+            .addComponent('caption',{text:'这还是个标题'})
+        .addPage()
+            .addComponent('caption',{text:'这还是个标题'})
         .addPage('tail')
             .addComponent('logo',{
             center:true,
@@ -164,5 +180,5 @@ $(function(){
                 $.fn.fullpage.moveTo( 1 )
             }
         })
-        .loader(4);
+        .loader(3);
 });
