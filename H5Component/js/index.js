@@ -128,16 +128,52 @@ $(function(){
             .addComponent('caption',{text:'这只是个标题'})
             .addComponent('polyline',{
                 type:'polyline',
-                data:[['前端开发',.4,'#ff7676'],['移动开发',.2],['后端开发',.3,'blue'],['图像处理',.1]],
-                width:530,
-                height:300,
+                data:[['array[0]',.4,'#ff7676'],['array[1]',.2],['array[2]',.3,'blue'],['array[3]',.1]],
+                width:600,
+                height:400,
                 center:true,
+                lineColor:'#0094bd',
+                shadowColor:'rgba(127, 236, 255, 0.47)',
                 css:{opacity:0,top:200},
                 animateIn:{opacity:1,top:250},
                 animateOut:{opacity:0,top:100},
             })
+            .addComponent('msg',{
+                text:'折线 折线 折线图',
+                css:{
+                    opacity:0,top:160,fontSize:'20px',fontWeight:700,
+                    textAlign:'center',width:'100%',color:'#2198ad'
+                },
+                animateIn:{ opacity:1},
+                animateOut:{ opacity:0}
+            })
         .addPage()
             .addComponent('caption',{text:'这还是个标题'})
+            .addComponent('pie',{
+                type:'pie',
+                data:[
+                    ['array[0]' ,  .4 ,'#ff7676'],
+                    ['array[1]' ,      .3 ,'#5ddbd8'],
+                    ['array[2]' , .2 ,'#99c1ff'],
+                    ['array[3]' , .1 ,'#ffad69'],
+                ],
+                css:{top:200,opacity:0},
+                width:300,
+                height:300,
+                center:true,
+                animateIn:{opacity:1},
+                animateOut:{opacity:0},
+                //delay:1500
+            })
+            .addComponent('msg',{
+                text:'这 这 这是饼 饼 饼图',
+                css:{
+                    opacity:0,bottom:120,fontSize:'20px',fontWeight:700,
+                    textAlign:'center',width:'100%',color:'#2198ad'
+                },
+                animateIn:{ opacity:1},
+                animateOut:{ opacity:0}
+            })
         .addPage()
             .addComponent('caption',{text:'这还是个标题'})
         .addPage()
@@ -180,5 +216,5 @@ $(function(){
                 $.fn.fullpage.moveTo( 1 )
             }
         })
-        .loader(3);
+        .loader();
 });
