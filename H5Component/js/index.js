@@ -174,6 +174,37 @@ $(function(){
                 animateIn:{ opacity:1},
                 animateOut:{ opacity:0}
             })
+        .addPage() //bar（bar_v）
+            .addComponent('caption',{text:'前端开发课程'})
+            .addComponent('bar',
+                {
+                    type : 'bar',
+                    width : 530,
+                    height : 600,
+                    data:[
+                        ['array[0]' , .4  ,'#ff7676'],
+                        ['array[1]' , .2  ],
+                        ['array[2]' , .1 ],
+                        ['array[3]' , .2  ],
+                        ['array[4]' , .35 ],
+                        ['array[5]' , .05 ],
+                        ['array[6]' , .09  ]
+                    ],
+                    css : {top:100,opacity:0},
+                    animateIn:{opacity:1, top:200},
+                    animateOut:{opacity:0, top:100},
+                    center : true,
+                })
+            .addComponent('msg',{
+                text:'柱状 柱状 柱状图',
+                css:{
+                    opacity:0,bottom:120,fontSize:'20px',fontWeight:700,
+                    textAlign:'center',width:'100%',color:'#2198ad'
+                },
+                animateIn:{ opacity:1},
+                animateOut:{ opacity:0}
+            })
+        
         .addPage()
             .addComponent('caption',{text:'这还是个标题'})
         .addPage()
@@ -216,5 +247,5 @@ $(function(){
                 $.fn.fullpage.moveTo( 1 )
             }
         })
-        .loader();
+        .loader(5);
 });
