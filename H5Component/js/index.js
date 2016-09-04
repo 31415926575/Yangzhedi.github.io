@@ -358,5 +358,5 @@ $(function(){
                 $.fn.fullpage.moveTo( 1 )
             }
         })
-        .loader(9);
+        .loader();
 });
