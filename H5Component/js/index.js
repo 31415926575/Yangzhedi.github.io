@@ -50,9 +50,10 @@ $(function(){
         })
             .addComponent('slogan',{
             //center:true,
+            type:'img',
             width:160,
             height:160,
-            bg:'imgs/icebear1.png',
+            src:'imgs/icebear1.png',
             css:{opacity:0,top:'30%',
                 left:'35%',marginLeft:'-40px'
             },
