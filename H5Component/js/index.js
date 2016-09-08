@@ -358,5 +358,6 @@ $(function(){
                 $.fn.fullpage.moveTo( 1 )
             }
         })
-        .loader([ 'imgs/tail_back.png','imgs/tail_share.png','imgs/tail_slogan.png' ] );
+        .loader([ 'imgs/logo.png','imgs/icebear1.png','imgs/face_img_left.png','imgs/icebear1.png',
+            'imgs/tail_back.png','imgs/tail_share.png','imgs/tail_slogan.png' ] );
 });
