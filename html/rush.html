@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zn-ch">
+<head>
+	<meta charset="utf-8">
+	<title>模拟抢购</title>
+	<style type="text/css">
+		body{margin: 10px;padding: 10px;}
+		#rush{width: 100px;height: 50px;border-radius: 15px}
+		#show{width: 50px;}
+		#count{width: 50px;}
+		.show{position: absolute;top:100px;left: 30px;}
+		.count{position: absolute;top:150px;left: 30px;}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript">
+		window.onload=function(){
+			var Btn = document.getElementById('rush');
+			var Input = document.getElementById('show');
+			var Count = document.getElementById('count');
+
+			if(Btn.disabled == true){
+				Btn.style.background = '#ccc';
+			}
+			var time = 5;
+			Input.value="5";
+			var t = setInterval(function(){
+				time--;
+				Input.value=time;
+			},1000);
+			setTimeout(function(){
+				Btn.disabled = false;
+				Btn.style.background = '#ff7576';
+				Input.value="0";
+				clearInterval(t);
+			},5000);
+			
+			var count = 0;
+			Btn.onclick = function(){ 
+    			count++;
+    			Count.value=count;
+    			//window.open("http://www.baidu.com");   
+    			//window.location.href="http://www.baidu.com";  
+  			} 
+		}
+		/*
+		setInterval(function(){
+			$("#rush").trigger('click');
+			},1000)
+		*/
+	</script>  
+</head>
+<body>
+	<div class="button">
+		<button id="rush" style="color:#fff"  disabled>抢购</button>
+		<div class="show"><input type="text" id="show"/>秒后可以抢购</div>
+		<div class="count">被点击了<input type="text" id="count"/>次</div>
+	</div>
+</body>
+</html>
+
+
